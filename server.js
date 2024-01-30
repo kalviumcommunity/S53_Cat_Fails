@@ -4,11 +4,15 @@ const port = 3000;
 const mongoose = require("mongoose");
 const User = require("./model/user");
 
-main()
+
+app.get("/", (req, res) => {
+    main()
     .then(() => {
         console.log("Connection Successful!");
+        res.send("Connection with DB created Successfully!")
     })
     .catch((err) => console.log("Error Connecting!", err));
+});
 
 async function main() {
     await mongoose.connect(
@@ -93,9 +97,7 @@ async function main() {
 //     console.error(err);
 //   });
 
-app.get("/", (req, res) => {
-    res.send("Cat Clusters!");
-});
+
 app.get("/ping", (req, res) => {
     res.send({ message: "pong" });
 });
