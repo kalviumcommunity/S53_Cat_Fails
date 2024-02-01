@@ -21,11 +21,7 @@ main()
     .catch((err) => console.log("Error Connecting!", err));
 
 app.get("/", (req, res) => {
-    if (mongoConnect == true){
-        res.send("Connection with Database Sucessful!")
-    }else{
-        res.status(404).send("Connection FAILED!")
-    }
+    res.send("Cat Cluster!")
 });
 
 app.get("/ping", (req, res) => {
