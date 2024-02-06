@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Urbanist', sans-serif;
+    /* background-color:rgba(22, 29, 56, 1); */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.bg-img {
+    position: fixed;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background-image: url("./assets/Background.webp");
+    opacity: 0.05;
+    top: 0;
+}
+
+.bg-color {
+    z-index: -2;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(11, 21, 45);
+    background: linear-gradient(90deg, rgba(11, 21, 45, 1) 0%, rgba(22, 29, 56, 1) 50%, rgba(11, 21, 45, 1) 100%);
+    background-size: 100% 100%;
+}
+
+.home-parent, .faq-parent {
+    color: black;
+}
+
+.faq-parent {
+    text-align: center;
+    width: 80vw;
+    margin-top: 4vh;
+}
+
+.faq-main{
+    border-radius: 15px;
+    background-color: aliceblue;
+    margin-bottom: 5vh;
+}
+
+.faq-head {
+    padding: 4vh 0vw 2vh 0vw;
+    font-weight: 600;
+    font-size: 3vmax;
+}
+
+.faq-qna {
+    padding: 0vh 5vw 5vh 5vw;
+}
+
+.faq-q {
+    font-weight: 600;
+    font-size: 2vmax;
+    text-align: left;
+    padding-top: 3vh;
+
+}
+
+.faq-a{
+    font-weight: 200;
+    font-size: 1.5vmax;
+    text-align: left;
+    padding-top: 1vh;
+}
+
+.parent {
+    display: flex;
+    justify-content: center;
+    margin-top: 3vh;
+    position: relative;
+    position: sticky;
+    top: 3vh;
+}
+
+
+nav {
+    justify-content: center;
+    border-bottom: 1px solid;
+    box-shadow: 0px 2px 5px black;
+    width: 70vw;
+    background-color: rgba(245, 245, 245);
+    border-radius: 20px;
+    
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+#img-logo {
+    width: 13vmax;
+}
+
+.nav-parent {
+    margin: 1.5vh 0vw 1.5vh 1.5vw;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    width: 100vw;
+    
+}
+
+.options span:hover {
+    cursor: pointer;
+}
+
+#img-user {
+    width: 2.2vmax;
+}
+
+.options {
+    font-weight: 600;
+}
+
+#login, #faq {
+    position: relative;
+    font-size: 1.1vmax;
+}
+
+.span-div {
+    margin-right: 1.5vw;
+    padding: 6px;
+    border-radius: 5px;
+    cursor: pointer;
+    overflow: hidden;
+    background: linear-gradient(to bottom, transparent 50%, gold 50%);
+    background-size: 100% 200%;
+    transition: all 0.4s ease;
+    user-select: none;
+    border-bottom: 3px solid gold;
+}
+
+.span-div:hover {
+    background-position: 0% 100%;
+}
+
+.home-parent-main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.home-parent {
+    margin-bottom: 5vh;
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.home-part-1 {
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.home-parent-part {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3vw;
+}
+
+.home-part-3 {
+    display: flex;
+    gap: 2vw;
+}
+
+.btn-1, .btn-2 {
+    padding: 1vh;
+    font-family: 'Urbanist', sans-serif;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-1,
+.btn-2 {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    overflow: hidden;
+    background-color: aliceblue; /* Set the background color */
+    background: linear-gradient(to bottom, transparent 50%, gold 50%), aliceblue;
+    background-size: 100% 200%;
+    transition: all 0.4s ease;
+    user-select: none;
+    margin: 10px;
+    display: flex;
+    font-size: 1vmax;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-1:hover,
+.btn-2:hover {
+    background-position: 0% 100%;
+    transform: scale(1.05);
+}
+
+#paw, #link {
+    width: 12px;
+}
+
+#home-span-1, #home-span-2 {
+    font-size: 9vmax;
+    font-weight: 900;
+    color: #cbd5e1;
+}
+
+#home-span-3 {
+    font-size: 1.2vmax;
+    color: gold;
+    text-align: center;
+}
+
+#home-cat {
+    width: 30vmax;
+}
+
+#home-span-2 {
+    color: #64748b;
+}
+
+@media (max-width: 768px) {
+    /* body {
+        background-color: lightblue;
+    } */
+    #login, #faq {
+        font-size: 1.5vmax;
+    }
+    nav {
+        width: 90vw;
+    }
+    .home-parent-part {
+        gap: 5vh;
+        justify-content: center;
+    }
+    .btn-1, .btn-2 {
+    font-size: 1.6vmax;
+    }
+}
