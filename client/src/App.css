@@ -37,7 +37,8 @@ body {
     background-size: 100% 100%;
 }
 
-.home-parent, .faq-parent {
+.home-parent,
+.faq-parent {
     color: black;
 }
 
@@ -47,7 +48,7 @@ body {
     margin-top: 4vh;
 }
 
-.faq-main{
+.faq-main {
     border-radius: 15px;
     background-color: aliceblue;
     margin-bottom: 5vh;
@@ -71,7 +72,7 @@ body {
 
 }
 
-.faq-a{
+.faq-a {
     font-weight: 200;
     font-size: 1.5vmax;
     text-align: left;
@@ -95,7 +96,7 @@ nav {
     width: 70vw;
     background-color: rgba(245, 245, 245);
     border-radius: 20px;
-    
+
 }
 
 .flex {
@@ -113,7 +114,7 @@ nav {
     align-content: center;
     justify-content: space-between;
     width: 100vw;
-    
+
 }
 
 .options span:hover {
@@ -128,7 +129,8 @@ nav {
     font-weight: 600;
 }
 
-#login, #faq {
+#login,
+#faq {
     position: relative;
     font-size: 1.1vmax;
 }
@@ -163,7 +165,7 @@ nav {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
@@ -185,7 +187,8 @@ nav {
     gap: 2vw;
 }
 
-.btn-1, .btn-2 {
+.btn-1,
+.btn-2 {
     padding: 1vh;
     font-family: 'Urbanist', sans-serif;
     border-radius: 5px;
@@ -200,7 +203,8 @@ nav {
     border-radius: 5px;
     cursor: pointer;
     overflow: hidden;
-    background-color: aliceblue; /* Set the background color */
+    background-color: aliceblue;
+    /* Set the background color */
     background: linear-gradient(to bottom, transparent 50%, gold 50%), aliceblue;
     background-size: 100% 200%;
     transition: all 0.4s ease;
@@ -218,11 +222,13 @@ nav {
     transform: scale(1.05);
 }
 
-#paw, #link {
+#paw,
+#link {
     width: 12px;
 }
 
-#home-span-1, #home-span-2 {
+#home-span-1,
+#home-span-2 {
     font-size: 9vmax;
     font-weight: 900;
     color: #cbd5e1;
@@ -242,21 +248,155 @@ nav {
     color: #64748b;
 }
 
+.listings-parent {
+    padding: 4vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* repeat 3 columns with equal width */
+    gap: 2vw;
+    justify-items: center;
+}
+
+.post-pt {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-main {
+    background-color: #cbd5e1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2vh;
+    border-radius: 12px;
+}
+
+#moment {
+    width: 26vw;
+    border-radius: 12px;
+    align-self: center;
+}
+
+#user,
+#likes,
+#comments {
+    font-size: 1.3vmax;
+}
+
+.info,
+.data,
+.title {
+    justify-content: space-between;
+    margin: 1vh;
+}
+
+.title {
+    font-size: 1.5vmax;
+    font-weight: 900;
+}
+
+#time {
+    align-self: flex-end;
+    font-size: 0.8vmax;
+
+}
+
+#hearticon {
+    width: 2vmax;
+    transition: all 0.5s ease-in-out;
+    /* Apply transition to heart icon */
+    cursor: pointer;
+}
+
+#commenticon {
+    width: 2.5vmax;
+}
+
+.data-likes,
+.data-comments {
+    display: flex;
+    align-items: center;
+    gap: 1vmin;
+}
+
+
+#likes img:hover {
+    cursor: pointer;
+    /* Increase size on hover */
+}
+
+
+
 @media (max-width: 768px) {
+
     /* body {
         background-color: lightblue;
     } */
-    #login, #faq {
+    #login,
+    #faq {
         font-size: 1.5vmax;
     }
+
     nav {
         width: 90vw;
     }
+
     .home-parent-part {
         gap: 5vh;
         justify-content: center;
     }
-    .btn-1, .btn-2 {
-    font-size: 1.6vmax;
+
+    .btn-1,
+    .btn-2 {
+        font-size: 1.6vmax;
     }
+
+    .listings-parent {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .post-parent {
+        width: 75vw;
+    }
+
+.listings-parent {
+    gap: 3vh;
+}
+
+    #moment {
+        width: 69vw;
+    }
+
+    #hearticon {
+        width: 2.5vmax;
+    }
+
+    #commenticon {
+        width: 2.6vmax;
+    }
+    .info,
+    .data,
+    .title {
+        justify-content: space-between;
+        margin: 0.6vh;
+    }
+    #user,
+#likes,
+#comments {
+    font-size: 1.6vmax;
+}
+.post-main{
+    padding: 1.3vh;
+}
+#time {
+    align-self: flex-end;
+    font-size: 1vmax;
+
+}
+
+
+.title {
+    font-size: 1.8vmax;
+    font-weight: 800;
+}
 }
