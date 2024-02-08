@@ -10,8 +10,8 @@ const Post = mongoose.model("Post", {
         required: true
     },
     user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        type: String,
+        // ref: "User"
     },
     like: {
         type: Number,
@@ -21,7 +21,10 @@ const Post = mongoose.model("Post", {
         type: String,
         default: 0
     },
-    datePosted: Date,
+    datePosted: {
+        type: String,
+        default: new Date()
+    },
 });
 
 module.exports = Post;

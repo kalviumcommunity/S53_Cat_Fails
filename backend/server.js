@@ -3,6 +3,7 @@ const app = express();
 const port = 3000;
 const mongoose = require("mongoose");
 const User = require("./model/user");
+const {router, postRouter} = require("./routes");
 require('dotenv').config();
 
 let mongoConnect = false;
@@ -27,6 +28,9 @@ app.get("/", (req, res) => {
 app.get("/ping", (req, res) => {
     res.send({ message: "pong" });
 });
+
+app.use("/users" , router);
+app.use("/listings", postRouter)
 
 app.listen(port, () => {
     console.log(`Listening to ${port}`);

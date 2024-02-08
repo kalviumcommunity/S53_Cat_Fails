@@ -13,22 +13,22 @@ function Post() {
 
   const handleClick = () => {
     if (!clicked) {
-      setHeartIcon(heart_1); // Change heart icon to heart_1 on click if not clicked
+      setHeartIcon(heart_1);
     } else {
-      setHeartIcon(heart_2); // Change heart icon to heart_2 on click if clicked
+      setHeartIcon(heart_2);
     }
-    setClicked(!clicked); // Toggle clicked state
+    setClicked(!clicked);
   };
 
   const handleMouseEnter = () => {
     if (!clicked) {
-      setHeartIcon(heart_3); // Change heart icon to heart_3 on hover if not clicked
+      setHeartIcon(heart_3);
     }
   };
 
   const handleMouseLeave = () => {
     if (!clicked) {
-      setHeartIcon(heart_2); // Change heart icon back to heart_2 when not hovering if not clicked
+      setHeartIcon(heart_2);
     }
   };
 
