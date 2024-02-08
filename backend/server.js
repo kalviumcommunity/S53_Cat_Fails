@@ -5,6 +5,9 @@ const mongoose = require("mongoose");
 const User = require("./model/user");
 const {router, postRouter} = require("./routes");
 require('dotenv').config();
+const cors = require("cors");
+
+app.use(cors());
 
 let mongoConnect = false;
 

@@ -1,4 +1,12 @@
 const mongoose = require('mongoose');
+// const formatDate = require('../init/index');
+
+const formatDate = ()=> {
+    const date = new Date();
+    const options = { weekday: 'short', year: '2-digit', month: 'short', day: '2-digit', hour: 'numeric', minute: 'numeric' };
+    const formattedDate = date.toLocaleString('en-US', options);
+    return formattedDate;
+}
 
 const Post = mongoose.model("Post", {
     title: {
@@ -23,8 +31,8 @@ const Post = mongoose.model("Post", {
     },
     datePosted: {
         type: String,
-        default: new Date()
-    },
+        default: formatDate
+    }
 });
 
 module.exports = Post;
