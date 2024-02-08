@@ -2,7 +2,8 @@ import React from 'react'
 import '../App.css'
 import CatHome from '../assets/Cat_Home.png'
 import Paw from '../assets/Paw-1.png'
-import Link from '../assets/Link.png'
+import LinkIcon from '../assets/Link.png'
+import {Link} from 'react-router-dom'
 const Home = () => {
   return (
     <>
@@ -21,16 +22,20 @@ const Home = () => {
         </div>
         </div>
         <div className="home-part-3">
+        <Link to='/listings' style={{textDecoration:"None", color:"Black"}}>
           <button className="btn-1">
             Paw in!
             &nbsp;
-            <img src={Paw} alt="" id="paw"/>
+            <img src={Paw} alt="Paw" id="paw"/>
           </button>
+          </Link>
+          <Link to='/faq' style={{textDecoration:"None", color:"Black"}}>
           <button className="btn-2">
             FAQ
             &nbsp;
-            <img src={Link} alt="" id="link"/>
+            <img src={LinkIcon} alt="Link" id="link"/>
           </button>
+          </Link>
         </div>
       </div>
     </div>

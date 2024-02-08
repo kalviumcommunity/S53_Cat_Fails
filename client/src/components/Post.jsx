@@ -7,7 +7,7 @@ import comment_1 from "../assets/comment-1.svg";
 import comment_2 from "../assets/comment-2.svg";
 import comment_3 from "../assets/comment-3.svg";
 
-function Post() {
+function Post({listing}) {
   const [heartIcon, setHeartIcon] = useState(heart_2);
   const [clicked, setClicked] = useState(false);
 
@@ -32,16 +32,17 @@ function Post() {
     }
   };
 
+
   return (
     <div className="post-parent">
       <div className="post-main">
         <div className="post-pt">
-          <img src={Moment} alt="Moment GIF" id="moment" draggable="false" />
+          <img src={listing.link} alt="Moment GIF" id="moment" draggable="false" />
           <div className="info flex">
-            <span id="user">Tero</span>
-            <span id="time">23rd Jan, 2003</span>
+            <span id="user"><i>@{listing.user}</i></span>
+            <span id="time">{listing.datePosted}</span>
           </div>
-          <div className="title">Cat Jumps up!</div>
+          <div className="title">{listing.title.length>35 ? listing.title.substr(0, 35) + "..." : listing.title}</div>
           <div className="data flex">
             <div className="data-likes">
               <img
@@ -53,11 +54,11 @@ function Post() {
                 onMouseLeave={handleMouseLeave}
                 draggable="false"
               />
-              <span id="likes">23k</span>
+              <span id="likes">{listing.like}</span>
             </div>
             <div className="data-comments">
               <img src={comment_1} alt="" id="commenticon" />
-              <span id="comments">2</span>
+              <span id="comments">{listing.comments}</span>
             </div>
           </div>
         </div>
