@@ -189,15 +189,8 @@ nav {
 
 .btn-1,
 .btn-2 {
-    padding: 1vh;
     font-family: 'Urbanist', sans-serif;
-    border-radius: 5px;
-    cursor: pointer;
     font-weight: 600;
-}
-
-.btn-1,
-.btn-2 {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -248,6 +241,13 @@ nav {
     color: #64748b;
 }
 
+.listings-grandParent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
 .listings-parent {
     padding: 4vw;
     display: grid;
@@ -272,7 +272,8 @@ nav {
 }
 
 #moment {
-    width: 26vw;
+    width: 27vmax;
+    height: 18vmax;
     border-radius: 12px;
     align-self: center;
 }
@@ -325,6 +326,16 @@ nav {
     /* Increase size on hover */
 }
 
+.gif-animation {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+  }
+  
+  .gif-animation:hover {
+    -webkit-animation-play-state: running;
+    animation-play-state: running;
+  }
+  
 
 
 @media (max-width: 768px) {

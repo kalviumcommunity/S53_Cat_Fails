@@ -16,11 +16,8 @@ function App() {
           <Route path='/listings' element={<Listings/>}/>
           <Route path='/faq' element={<Faq/>}/>
         </Routes>
-        {/* <Home /> */}
-        {/* <Faq /> */}
       <div className='bg-img'></div>
       <div className='bg-color'></div>
-      {/* <Background /> */}
     </div>
     
   )
