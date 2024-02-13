@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import Moment from "../assets/Moment-1.gif";
 import heart_1 from "../assets/heart-1.svg";
 import heart_2 from "../assets/heart-2.svg";
 import heart_3 from "../assets/heart-3.svg";
 import comment_1 from "../assets/comment-1.svg";
-import comment_2 from "../assets/comment-2.svg";
-import comment_3 from "../assets/comment-3.svg";
 
 function Post({listing}) {
   const [heartIcon, setHeartIcon] = useState(heart_2);
@@ -68,3 +65,4 @@ function Post({listing}) {
 }
 
 export default Post;
+

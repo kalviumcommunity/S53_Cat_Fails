@@ -3,6 +3,8 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: 'Urbanist', sans-serif;
+
 }
 
 body {
@@ -130,9 +132,10 @@ nav {
 }
 
 #login,
-#faq {
+#faq,
+#form-back {
     position: relative;
-    font-size: 1.1vmax;
+    font-size: 1vmax;
 }
 
 .span-div {
@@ -216,8 +219,13 @@ nav {
 }
 
 #paw,
-#link {
+#link,
+#back{
     width: 12px;
+}
+
+#add {
+    width: 20px;
 }
 
 #home-span-1,
@@ -299,7 +307,6 @@ nav {
 #time {
     align-self: flex-end;
     font-size: 0.8vmax;
-
 }
 
 #hearticon {
@@ -320,23 +327,102 @@ nav {
     gap: 1vmin;
 }
 
-
 #likes img:hover {
     cursor: pointer;
-    /* Increase size on hover */
 }
 
 .gif-animation {
     -webkit-animation-play-state: paused;
     animation-play-state: paused;
-  }
-  
-  .gif-animation:hover {
+}
+
+.gif-animation:hover {
     -webkit-animation-play-state: running;
     animation-play-state: running;
-  }
-  
+}
 
+.form-parent {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 5vh 30vw 0vw 30vw;
+}
+
+.form {
+    padding: 4vmin;
+    border-radius: 15px;
+    display: flex;
+    background-color: aliceblue;
+    flex-direction: column;
+    align-items: center;
+    gap: 3vmin;
+}
+
+#form-head1 {
+    font-size: 2vmax;
+    font-weight: 800;
+}
+
+#form-head2 {
+    font-size: 1.2vmax;
+    font-weight: 500;
+}
+
+.form-btn1, .form-btn2, .newPost-btn{
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 800;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    overflow: hidden;
+    background-color: aliceblue;
+    background: linear-gradient(to bottom, transparent 50%, gold 50%), aliceblue;
+    background-size: 100% 200%;
+    transition: all 0.4s ease;
+    user-select: none;
+    display: flex;
+    font-size: 1vmax;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+}
+
+
+.newPost-btn {
+    padding: 10px 15px;
+}
+
+
+.form-btns {
+    display: flex;
+}
+
+.form-btn1:hover, .form-btn2:hover, .newPost-btn:hover {
+    background-position: 0% 100%;
+    transform: scale(1.05);
+}
+
+.form-btn-back {
+    border: 2px solid black;
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.newPost-btn{
+    position: fixed;
+    z-index: 1;
+    right: 2vw;
+    bottom: 3vh;
+}
+
+.err {
+    color: red;
+    font-size: 1vmax;
+    margin-top: 0.5mvin;
+}
 
 @media (max-width: 768px) {
 
@@ -344,7 +430,7 @@ nav {
         background-color: lightblue;
     } */
     #login,
-    #faq {
+    #faq, #form-back {
         font-size: 1.5vmax;
     }
 
@@ -358,7 +444,9 @@ nav {
     }
 
     .btn-1,
-    .btn-2 {
+    .btn-2,
+    .form-btn1,
+    .form-btn2 {
         font-size: 1.6vmax;
     }
 
@@ -370,9 +458,9 @@ nav {
         width: 75vw;
     }
 
-.listings-parent {
-    gap: 3vh;
-}
+    .listings-parent {
+        gap: 3vh;
+    }
 
     #moment {
         width: 69vw;
@@ -385,29 +473,40 @@ nav {
     #commenticon {
         width: 2.6vmax;
     }
+
     .info,
     .data,
     .title {
         justify-content: space-between;
         margin: 0.6vh;
     }
+
     #user,
-#likes,
-#comments {
-    font-size: 1.6vmax;
-}
-.post-main{
-    padding: 1.3vh;
-}
-#time {
-    align-self: flex-end;
-    font-size: 1vmax;
+    #likes,
+    #comments {
+        font-size: 1.6vmax;
+    }
 
-}
+    .post-main {
+        padding: 1.3vh;
+    }
 
+    #time {
+        align-self: flex-end;
+        font-size: 1vmax;
+    }
 
-.title {
-    font-size: 1.8vmax;
-    font-weight: 800;
-}
+    .title {
+        font-size: 1.8vmax;
+        font-weight: 800;
+    }
+
+    .form-main {
+    gap: 5vmin;
+
+    }
+
+    .form-parent {
+        padding: 10vh 10vw 0vw 10vw;
+    }
 }
