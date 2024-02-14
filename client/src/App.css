@@ -288,7 +288,9 @@ nav {
 
 #user,
 #likes,
-#comments {
+#comments,
+.details-user,
+    .details-title {
     font-size: 1.3vmax;
 }
 
@@ -368,7 +370,7 @@ nav {
     font-weight: 500;
 }
 
-.form-btn1, .form-btn2, .newPost-btn{
+.form-btn1, .form-btn2, .newPost-btn, .edit-btn{
     font-family: 'Urbanist', sans-serif;
     font-weight: 800;
     padding: 5px 10px;
@@ -398,9 +400,29 @@ nav {
     display: flex;
 }
 
-.form-btn1:hover, .form-btn2:hover, .newPost-btn:hover {
+.form-btn1:hover, .form-btn2:hover, .newPost-btn:hover, .edit-btn:hover, .delete-btn:hover {
     background-position: 0% 100%;
     transform: scale(1.05);
+}
+
+.delete-btn {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 800;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    overflow: hidden;
+    background-color: aliceblue;
+    background: linear-gradient(to bottom, transparent 50%, rgb(255, 102, 102) 50%), aliceblue;
+    background-size: 100% 200%;
+    transition: all 0.4s ease;
+    user-select: none;
+    display: flex;
+    font-size: 1vmax;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
 }
 
 .form-btn-back {
@@ -424,6 +446,62 @@ nav {
     margin-top: 0.5mvin;
 }
 
+.cardDetails-parent {
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
+}
+
+.cardDetails-main {
+    background-color: aliceblue;
+    padding: 1vw;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-radius: 14px;
+}
+
+#cardDetail-img {
+    width: 35vw;
+    height: 50vh;
+    border-radius: 14px;
+}
+
+.cardDetails-text {
+    flex-direction: column;
+    justify-content: space-;
+    align-items: center;
+    padding: 1vw;
+    height:30vh;
+    width: 25vw;
+}
+
+.details-title {
+    font-weight: 800;
+}
+
+.cardDetails-btns {
+    height: 20vh;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.span-back {
+    padding: 6px;
+    border-radius: 5px;
+    cursor: pointer;
+    overflow: hidden;
+    background: linear-gradient(to bottom, transparent 50%, gold 50%);
+    background-size: 100% 200%;
+    transition: all 0.4s ease;
+    user-select: none;
+}
+
+.span-back:hover {
+    background-position: 0% 100%;
+}
+
+
 @media (max-width: 768px) {
 
     /* body {
@@ -446,7 +524,10 @@ nav {
     .btn-1,
     .btn-2,
     .form-btn1,
-    .form-btn2 {
+    .form-btn2,
+    .edit-btn,
+    .delete-btn
+    {
         font-size: 1.6vmax;
     }
 
@@ -483,7 +564,10 @@ nav {
 
     #user,
     #likes,
-    #comments {
+    #comments,
+    .details-user,
+    .details-title
+    {
         font-size: 1.6vmax;
     }
 
@@ -508,5 +592,14 @@ nav {
 
     .form-parent {
         padding: 10vh 10vw 0vw 10vw;
+    }
+
+.cardDetails-main {
+    margin: 10vw;
+    padding: 3vw;
+}
+
+    #cardDetail-img {
+        width: 90vw;
     }
 }
