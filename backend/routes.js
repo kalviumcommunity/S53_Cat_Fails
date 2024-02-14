@@ -7,19 +7,19 @@ const router = express.Router();
 const postRouter = express.Router();
 require('dotenv').config();
 
-app.use(express.json())
-router.use(express.json())
-postRouter.use(express.json())
+app.use(express.json());
+router.use(express.json());
+postRouter.use(express.json());
 
-router.get("/", async (req, res)=>{
-    await User.find().then((data)=>{returnData = data});
+router.get("/", async (req, res) => {
+    await User.find().then((data) => { returnData = data });
     res.send(returnData);
-})
+});
 
-postRouter.get("/", async (req, res)=>{
-    await Post.find().then((data)=>{returnData = data});
+postRouter.get("/", async (req, res) => {
+    await Post.find().then((data) => { returnData = data });
     res.send(returnData);
-})
+});
 
 router.post("/", async (req, res) => {
     let insertData = new User(req.body);
@@ -51,52 +51,84 @@ router.put("/:username", async (req, res) => {
     }
 });
 
+// postRouter.put("/:title", async (req, res) => {
+//     const { title } = req.params;
+//     const newData = req.body.title;
+//     try {
+//         const updatedTitle = await Post.findOneAndUpdate({ title: title }, { title: newData });
+//         if (updatedTitle) {
+//             res.send(`Updated the data! ${updatedTitle}`);
+//         } else {
+//             res.status(404).send("User not found");
+//         }
+//     } catch (err) {
+//         console.error("Error updating data!", err);
+//         res.status(500).send(err);
+//     }
+// });
 
-postRouter.put("/:title", async (req, res) => {
-    const { title } = req.params;
-    const newData = req.body.title;
+router.delete("/", async (req, res) => {
     try {
-        const updatedTitle = await Post.findOneAndUpdate({ title: title }, { title: newData });
-        if (updatedTitle) {
-            res.send(`Updated the data! ${updatedTitle}`);
+        let toDelete = req.body.username;
+        let del = await User.deleteOne({ username: toDelete })
+        if (del.deletedCount == 0) {
+            res.status(404).send(`Could not Find user with the username - ${toDelete}.`)
         } else {
-            res.status(404).send("User not found");
+            res.send(`Deleted ${toDelete}`);
         }
-    } catch (err) {
-        console.error("Error updating data!", err);
-        res.status(500).send(err);
+    }
+    catch {
+        res.status(500).send("Internal Server Error Occured.")
     }
 });
 
-router.delete("/", async(req, res)=>{
+// postRouter.delete("/", async (req, res) => {
+//     try {
+//         let toDelete = req.body.title;
+//         let del = await Post.deleteOne({ title: toDelete })
+//         if (del.deletedCount == 0) {
+//             res.status(404).send(`Could not Find user with the username - ${toDelete}.`)
+//         } else {
+//             res.send(`Deleted ${toDelete}`);
+//         }
+//     }
+//     catch (err) {
+//         console.log(err);
+//         res.status(500).send("Internal Server Error Occured.")
+//     }
+// });
+
+postRouter.get("/:id", async (req, res) => {
+    let { id } = req.params;
+    let result = await Post.findById(id);
+    if (result == null) {
+        res.status(404).json("Post not Found!")
+    }
+    res.send(result)
+});
+
+postRouter.put("/:id", async (req, res) => {
+    const { id } = req.params;
+    const newData = req.body;
     try {
-        let toDelete = req.body.username;
-        let del = await User.deleteOne({username:toDelete})
-        if (del.deletedCount == 0){
-            res.status(404).send(`Could not Find user with the username - ${toDelete}.`)
-        }else{
-            res.send(`Deleted ${toDelete}`);
+        let updatedData = await Post.findByIdAndUpdate(id, newData);
+        if (updatedData === null || updatedData === undefined) {
+            res.status(404).send("Post not found");
+        } else {
+            res.send("Updated!");
         }
+    } catch (err) {
+        res.status(500).send(err.message);
     }
-    catch{
-        res.status(500).send("Internal Server Error Occured.")
+});
+
+postRouter.delete("/:id", async (req, res)=>{
+    let {id} = req.params;
+    let result = await Post.findByIdAndDelete(id);
+    if (result.deletedCount == 0) {
+        res.status(404).send("Post not Found!")
     }
+    res.send("Deleted!")
 })
 
-postRouter.delete("/", async(req, res)=>{
-    try {
-        let toDelete = req.body.title;
-        let del = await Post.deleteOne({title:toDelete})
-        if (del.deletedCount == 0){
-            res.status(404).send(`Could not Find user with the username - ${toDelete}.`)
-        }else{
-            res.send(`Deleted ${toDelete}`);
-        }
-    }
-    catch(err){
-        console.log(err);
-        res.status(500).send("Internal Server Error Occured.")
-    }
-})
-
-module.exports = {router, postRouter}
+module.exports = { router, postRouter }

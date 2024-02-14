@@ -3,8 +3,10 @@ import heart_1 from "../assets/heart-1.svg";
 import heart_2 from "../assets/heart-2.svg";
 import heart_3 from "../assets/heart-3.svg";
 import comment_1 from "../assets/comment-1.svg";
+import { useNavigate } from "react-router-dom";
 
 function Post({listing}) {
+  const navigate = useNavigate();
   const [heartIcon, setHeartIcon] = useState(heart_2);
   const [clicked, setClicked] = useState(false);
 
@@ -29,9 +31,12 @@ function Post({listing}) {
     }
   };
 
+  const cardClick = () => {
+    navigate(`/listings/details/${listing._id}`);
+  };
 
   return (
-    <div className="post-parent">
+    <div className="post-parent" onClick={cardClick}>
       <div className="post-main">
         <div className="post-pt">
           <img src={listing.link} alt="Moment GIF" id="moment" draggable="false" />

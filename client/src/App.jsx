@@ -1,4 +1,6 @@
 import './App.css'
+import CardDetails from './components/CardDetails'
+import Edit from './components/Edit'
 import Home from './components/Home'
 import Listings from './components/Listings'
 import Navbar from './components/Navbar'
@@ -16,6 +18,8 @@ function App() {
           <Route path='/listings' element={<Listings/>}/>
           <Route path='/faq' element={<Faq/>}/>
           <Route path='/listings/new' element= {<NewPost />} />
+          <Route path="/listings/details/:id" element={<CardDetails/>} />
+          <Route path="/listings/edit/:id" element={<Edit/>} />
         </Routes>
       <div className='bg-img'></div>
       <div className='bg-color'></div>
