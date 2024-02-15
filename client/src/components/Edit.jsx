@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   FormControl,
   FormLabel,
@@ -9,55 +9,69 @@ import {
   Button,
   Textarea,
 } from "@chakra-ui/react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 import backIcon from "../assets/back.png"
+import { Toaster, toast } from "sonner";
+
 
 function Edit() {
 
   const navigate = useNavigate();
   const [data, setData] = useState({});
   const { id } = useParams();
+  console.log(data);
 
   const { register, handleSubmit, formState: { errors }, setValue } = useForm();
 
   const FormSubmitHandler = (formData) => {
-    axios
-    .put(`https://cat-cluster.onrender.com/listings/${data._id}`, formData)
-      .then(() => {
-        console.log("ADDED");
-        navigate(`/listings/details/${data._id}`);
+    try{
+      toast.promise(axios
+        .put(`https://cat-cluster.onrender.com/listings/${id}`, formData)
+        , {
+        loading: "Editing your data...",
+        success: () => {
+          return `Post has been Edited`;
+        },
+        error: "Error has occured!",
       })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Some error occurred.");
-      });
+      setTimeout(()=>{
+  
+          navigate(`/listings/details/${id}`);
+  
+        }, 1500)
+    }catch(err){
+      toast.error("Some error occured!")
+      console.log(err);
+    }
   };
 
-
-
   useEffect(() => {
-    axios
-    .get(`https://cat-cluster.onrender.com/listings/${data._id}`)
-      .then((res) => {
-        console.log(res.data);
-        setData(res.data);
-        setValue("user", res.data.user);
-        setValue("title", res.data.title);
-        setValue("link", res.data.link);
-      })
-      .catch((err) => {
-        console.log(err);
-        if (err.response.data === "Post not found..!") {
-          toast.error("Post not found!");
-        } else {
-          toast.error("Server side error or wrong ID..!");
+    toast.promise(
+      axios
+      .get(`https://cat-cluster.onrender.com/listings/${id}`)
+        .then((res) => {
+          console.log(res.data);
+          setData(res.data);
+          setValue("user", res.data.user);
+          setValue("title", res.data.title);
+          setValue("link", res.data.link);
+        })
+        .catch((err) => {
+          console.log(err);
+        }),
+        {
+          loading: "Loading your Data..",
+          success: () => {
+            return `You can now edit your data!`;
+          },
+          error: "Error has occured!",
         }
-      });
+    )
   }, [id, setValue]);
 
   return (
     <div className="form-parent">
+      <Toaster richColors position="top-right"/>
       <form className="form" onSubmit={handleSubmit(FormSubmitHandler)}>
       <span id="form-head1">Edit Post</span>
       <span id="form-head2">Edit your post!</span>
