@@ -4,6 +4,8 @@ import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {BarLoader} from 'react-spinners'
 import backIcon from "../assets/back.png";
+import { Toaster, toast } from "sonner";
+
 
 function CardDetails() {
   const navigate = useNavigate();
@@ -22,19 +24,27 @@ function CardDetails() {
       });
   }, []);
 
-
   const deletePost = () => {
     let result = confirm("Are you sure?");
     if (result) {
-        axios
+      try {
+        toast.promise(
+          axios
         .delete(`https://cat-cluster.onrender.com/listings/${data._id}`)
-        .then((res) => {
-            console.log(res);
-            navigate("/listings");
+          , {
+          loading: "Loading...",
+          success: () => {
+            return `Post has been deleted`;
+          },
+          error: "Error",
         })
-        .catch((err) => {
-            console.log(err);
-        });
+            setTimeout(()=>{
+              navigate("/listings");
+            }, 1500)
+      }catch(err){
+        toast.error('Some error has occured!')
+        console.log(err);
+      }
     }
   };
 
@@ -46,8 +56,9 @@ const editPost = ()=>{
     <>
 
 <div className="cardDetails-parent flex">
+<Toaster richColors position="top-right"/>
     {data.link == undefined ? (
-      <BarLoader color='blue'/>
+      <BarLoader color='white'/>
       ) : (
         <div className="cardDetails-main flex">
             <div className="cardDetails-img">

@@ -449,7 +449,7 @@ nav {
 .cardDetails-parent {
     justify-content: center;
     align-items: center;
-    margin-top: 10vh;
+    flex: 1;
 }
 
 .cardDetails-main {

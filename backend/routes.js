@@ -2,6 +2,9 @@ const mongoose = require("mongoose");
 const express = require("express");
 const User = require("./model/user");
 const Post = require("./model/posts");
+const { postValidation } = require("./utils/validation");
+const ExpressError = require("./utils/ExpressError");
+const wrapAsync = require("./utils/wrapAsync");
 const app = express();
 const router = express.Router();
 const postRouter = express.Router();
@@ -10,6 +13,22 @@ require('dotenv').config();
 app.use(express.json());
 router.use(express.json());
 postRouter.use(express.json());
+
+postRouter.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+});
+
+const validatePost = (req, res, next) => {
+    let { error } = postValidation.validate(req.body);
+    if (error) {
+      throw new ExpressError(400, error);
+    } else {
+      next();
+    }
+  };
 
 router.get("/", async (req, res) => {
     await User.find().then((data) => { returnData = data });
@@ -21,34 +40,27 @@ postRouter.get("/", async (req, res) => {
     res.send(returnData);
 });
 
-router.post("/", async (req, res) => {
+router.post("/", wrapAsync(async (req, res) => {
     let insertData = new User(req.body);
-    insertData.save()
-        .then(() => res.send(`Added, ${req.body.username}`))
-        .catch((err) => res.status(500).send(err));
-});
+    await insertData.save()
+    res.send("Added")
+}));
 
-postRouter.post("/", async (req, res) => {
+postRouter.post("/", validatePost, wrapAsync(async (req, res) => {
     let insertData = new Post(req.body);
-    insertData.save()
-        .then(() => res.send(`Added, ${req.body.title}`))
-        .catch((err) => res.status(500).send(err));
-});
+    await insertData.save()
+    res.send("Added")
+}));
 
 router.put("/:username", async (req, res) => {
     const { username } = req.params;
     const newData = req.body.username;
-    try {
         const updatedUser = await User.findOneAndUpdate({ username: username }, { username: newData });
         if (updatedUser) {
             res.send(`Updated the data! ${updatedUser}`);
         } else {
-            res.status(404).send("User not found");
+            throw new ExpressError(404,"User not found");
         }
-    } catch (err) {
-        console.error("Error updating data", err);
-        res.status(500).send(err);
-    }
 });
 
 // postRouter.put("/:title", async (req, res) => {
@@ -67,20 +79,14 @@ router.put("/:username", async (req, res) => {
 //     }
 // });
 
-router.delete("/", async (req, res) => {
-    try {
+router.delete("/", wrapAsync(async (req, res) => {
         let toDelete = req.body.username;
         let del = await User.deleteOne({ username: toDelete })
         if (del.deletedCount == 0) {
-            res.status(404).send(`Could not Find user with the username - ${toDelete}.`)
-        } else {
-            res.send(`Deleted ${toDelete}`);
+            throw new ExpressError(404,`Could not Find user with the username - ${toDelete}.`)
         }
-    }
-    catch {
-        res.status(500).send("Internal Server Error Occured.")
-    }
-});
+        res.send(`Deleted ${toDelete}`);
+}));
 
 // postRouter.delete("/", async (req, res) => {
 //     try {
@@ -107,28 +113,29 @@ postRouter.get("/:id", async (req, res) => {
     res.send(result)
 });
 
-postRouter.put("/:id", async (req, res) => {
+postRouter.put("/:id",validatePost, wrapAsync(async (req, res) => {
     const { id } = req.params;
     const newData = req.body;
-    try {
         let updatedData = await Post.findByIdAndUpdate(id, newData);
         if (updatedData === null || updatedData === undefined) {
-            res.status(404).send("Post not found");
-        } else {
-            res.send("Updated!");
+            throw new ExpressError(404,"Post not found");
         }
-    } catch (err) {
-        res.status(500).send(err.message);
-    }
-});
+            res.send("Updated!");
+}));
 
-postRouter.delete("/:id", async (req, res)=>{
+postRouter.delete("/:id", wrapAsync(async (req, res)=>{
     let {id} = req.params;
     let result = await Post.findByIdAndDelete(id);
     if (result.deletedCount == 0) {
-        res.status(404).send("Post not Found!")
+        throw new ExpressError(404,"Post not found!")
     }
     res.send("Deleted!")
-})
+}))
+
+postRouter.use((err, req, res, next) => {
+    let { status = 500, message = "Some error occured..!" } = err;
+    // console.log(err);
+    res.status(status).send(err.message);
+  });
 
 module.exports = { router, postRouter }
