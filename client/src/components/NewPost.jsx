@@ -10,6 +10,7 @@ import { AppContext } from "./Context";
 import { getCookie } from "../utils/cookies";
 
 function NewPost() {
+  const token = getCookie("auth-token")
   const { login, setLogin } = useContext(AppContext);
   const navigate = useNavigate();
   const {
@@ -27,8 +28,12 @@ function NewPost() {
   const FormSubmitHandler = (data) => {
     try {
       toast.promise(
-        axios.post("https://cat-cluster.onrender.com/listings", data),
-        {
+        axios.post("https://cat-cluster.onrender.com/listings", data,{
+          headers:{
+            "Authorization":token
+          }
+        })
+        ,{
           loading: "Loading...",
           success: () => {
             return `Post has been added`;

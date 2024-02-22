@@ -2,24 +2,26 @@ import React, { useContext } from "react";
 import "../App.css";
 import Logo from "../assets/CatCluster-2.png";
 import CatUser from "../assets/CatUser.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "./Context";
 import { deleteCookie } from "../utils/cookies";
 import { loginCheck } from "../utils/loginCheck";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const { login, setLogin } = useContext(AppContext);
   const logout = () => {
-    console.log("logout")
     deleteCookie("username");
+    deleteCookie("auth-token");
     setLogin(loginCheck());
+    navigate("/");
   };
   const loginBtn = () => {
     if (login) {
       return (
         <div className="span-div" onClick={logout}>
-            <span id="login">Logout</span>
-          </div>
+          <span id="login">Logout</span>
+        </div>
       );
     } else {
       return (

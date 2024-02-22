@@ -22,23 +22,20 @@ function SignUp() {
     const FormSubmitHandler = (data) => {
   try{
     toast.promise(
-      axios
-      .post("http://localhost:3000/users", data)
-      , {
-      loading: "Loading...",
-      success: () => {
-        setCookie("username",data.username,365)
-        setLogin(loginCheck())
-        return `Account Created!`;
-      },
-      error: "Error",
-    })
-        setTimeout(()=>{
-          navigate("/listings");
-        }, 1500)
+      axios.post("https://cat-cluster.onrender.com/users", data),
+      {
+        loading: "Loading...",
+        success: (response) => {
+          setCookie("username", data.username, 365);
+          setCookie("auth-token", response.data, 365);
+          setLogin(loginCheck());
+          return `Account Created!`;
+        },
+        error: "Error",
+      }
+    );    
       }catch(err){
         toast.error('Some error has occured!')
-        console.log(err);
       }
   }
 
