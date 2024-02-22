@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import {BarLoader} from 'react-spinners'
 import backIcon from "../assets/back.png";
 import { Toaster, toast } from "sonner";
+import { getCookie } from "../utils/cookies";
 
 
 function CardDetails() {
@@ -51,6 +52,21 @@ function CardDetails() {
 const editPost = ()=>{
     navigate(`/listings/edit/${data._id}`)
 }
+const username = getCookie("username")
+const adminOptions = ()=>{
+  if(username==data.user){
+    return(
+      <>
+      <button className="edit-btn" type="submit" onClick={editPost}>
+             Edit
+       </button>
+       <button className="delete-btn" type="submit" onClick={deletePost}>
+             Delete
+       </button>
+      </>
+    )
+  }
+}
 
   return (
     <>
@@ -72,12 +88,7 @@ const editPost = ()=>{
                     {data.title}
                 </div>
             <div className="cardDetails-btns flex">
-            <button className="edit-btn" type="submit" onClick={editPost}>
-             Edit
-       </button>
-       <button className="delete-btn" type="submit" onClick={deletePost}>
-             Delete
-       </button>
+            
        <Link to='/listings' style={{textDecoration:"None", color:"Black"}}>
         <div className="span-back form-btn-back">
              <img src={backIcon} alt="" id="back"/>
@@ -85,6 +96,7 @@ const editPost = ()=>{
              <span id="form-back">Back</span>
            </div>
          </Link>
+         {adminOptions()}
             </div>
             </div>
         </div>

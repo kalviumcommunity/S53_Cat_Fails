@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Post from './Post'
 import axios from 'axios'
 import {BarLoader} from 'react-spinners'
 import add from '../assets/add.png'
 import { Link } from 'react-router-dom'
+import { getCookie } from '../utils/cookies'
+import { AppContext } from './Context'
 
 function Listings() {
 
   const [data, setData] = useState([])
+  const username = getCookie("username")
+  const {login,setLogin} = useContext(AppContext)
   useEffect(()=>{
     setTimeout(()=>{
       axios.get("https://cat-cluster.onrender.com/listings")
@@ -21,6 +25,9 @@ function Listings() {
 
   return (
     <>
+    <div className='flex'>
+<span id="heading" style={{color:"white"}}>Hello,{login ? username : "Guest"}</span>
+    </div>
     <div className='listings-grandParent'>
       <Link to='/listings/new' style={{textDecoration:"None", color:"Black"}}>
     <div className="newPost-btn">

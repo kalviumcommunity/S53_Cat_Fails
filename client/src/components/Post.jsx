@@ -36,10 +36,10 @@ function Post({listing}) {
   };
 
   return (
-    <div className="post-parent" onClick={cardClick}>
+    <div className="post-parent">
       <div className="post-main">
         <div className="post-pt">
-          <img src={listing.link} alt="Moment GIF" id="moment" draggable="false" />
+          <img src={listing.link} alt="Moment GIF" id="moment" draggable="false" onClick={cardClick}/>
           <div className="info flex">
             <span id="user"><i>@{listing.user}</i></span>
             <span id="time">{listing.datePosted}</span>
