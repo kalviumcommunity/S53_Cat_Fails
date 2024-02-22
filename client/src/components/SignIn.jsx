@@ -23,11 +23,12 @@ function SignIn() {
   try{
     toast.promise(
       axios
-      .post("http://localhost:3000/users/login", data)
+      .post("https://cat-cluster.onrender.com/users/login", data)
       , {
       loading: "Loading...",
-      success: () => {
+      success: (result) => {
         setCookie("username",data.username,365)
+        setCookie("auth-token",result.data,365)
         setLogin(loginCheck())
         setTimeout(()=>{
           navigate('/listings');
