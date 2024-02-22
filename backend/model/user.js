@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
+const { formatDate } = require('./posts');
 
 const User = mongoose.model("User", {
     username: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     name: {
         type: String,
@@ -13,23 +15,10 @@ const User = mongoose.model("User", {
         type: String,
         required: true
     },
-    dateJoined: Date,
-    followers: {
-        type: Number,
-        default: 0
+    dateJoined: {
+        type: String,
+        default: formatDate
     },
-    following: {
-        type: Number,
-        default: 0
-    },
-    posts: {
-        type: Number,
-        default: 0
-    },
-    comments: {
-        type: Number,
-        default: 0
-    }
 });
 
 module.exports = User;

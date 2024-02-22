@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { FormControl, FormLabel, Input, Text, Button } from "@chakra-ui/react";
@@ -6,40 +6,47 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import backIcon from "../assets/back.png";
 import { Toaster, toast } from "sonner";
+import { AppContext } from "./Context";
+import { getCookie } from "../utils/cookies";
 
 function NewPost() {
+  const { login, setLogin } = useContext(AppContext);
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     watch,
     reset,
+    setValue,
     formState: { errors },
   } = useForm();
-
+  const username = getCookie("username");
+  useEffect(() => {
+    setValue("user", username);
+  }, []);
   const FormSubmitHandler = (data) => {
-try{
-  toast.promise(
-    axios
-    .post("https://cat-cluster.onrender.com/listings", data)
-    , {
-    loading: "Loading...",
-    success: () => {
-      return `Post has been added`;
-    },
-    error: "Error",
-  })
-      setTimeout(()=>{
+    try {
+      toast.promise(
+        axios.post("https://cat-cluster.onrender.com/listings", data),
+        {
+          loading: "Loading...",
+          success: () => {
+            return `Post has been added`;
+          },
+          error: "Error",
+        }
+      );
+      setTimeout(() => {
         navigate("/listings");
-      }, 1500)
-    }catch(err){
-      toast.error('Some error has occured!')
+      }, 1500);
+    } catch (err) {
+      toast.error("Some error has occured!");
       console.log(err);
     }
-}
+  };
   return (
     <div className="form-parent">
-      <Toaster richColors position="top-right"/>
+      <Toaster richColors position="top-right" />
       <form className="form" onSubmit={handleSubmit(FormSubmitHandler)}>
         <span id="form-head1">New Post</span>
         <span id="form-head2">Enter the following details!</span>
@@ -48,6 +55,7 @@ try{
             Username
           </FormLabel>
           <Input
+            isDisabled
             type="text"
             borderColor="black"
             placeholder="imtero123"
