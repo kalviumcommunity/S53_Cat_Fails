@@ -27,7 +27,7 @@ const Navbar = () => {
       return (
         <Link to="/signup" style={{ textDecoration: "None", color: "Black" }}>
           <div className="span-div">
-            <span id="login">Sign Up / Log-in</span>
+            <span id="login">Sign In</span>
           </div>
         </Link>
       );
@@ -45,6 +45,11 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="options flex">
+          <Link to="/users" style={{ textDecoration: "None", color: "Black" }}>
+              <div className="span-div">
+                <span id="faq">Users</span>
+              </div>
+            </Link>
             <Link to="/faq" style={{ textDecoration: "None", color: "Black" }}>
               <div className="span-div">
                 <span id="faq">FAQ</span>
