@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { formatDate } = require('./posts');
+// const { formatDate } = require('./posts');
 
 const User = mongoose.model("User", {
     username: {
@@ -17,8 +17,7 @@ const User = mongoose.model("User", {
     },
     dateJoined: {
         type: String,
-        default: formatDate
-    },
+    }
 });
 
 module.exports = User;

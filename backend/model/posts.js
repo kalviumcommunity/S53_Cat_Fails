@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 // const formatDate = require('../init/index');
 
-exports.formatDate = ()=> {
+formatDate = ()=> {
     const date = new Date();
     const options = { 
         timeZone: 'Asia/Kolkata',
@@ -39,7 +39,7 @@ const Post = mongoose.model("Post", {
     },
     datePosted: {
         type: String,
-        default: exports.formatDate
+        default: formatDate
     }
 });
 

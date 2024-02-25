@@ -34,7 +34,6 @@ const validatePost = (req, res, next) => {
 
 const jwtVerify = (req, res, next) => {
   try {
-    console.log(req.headers);
     let { authorization } = req.headers;
     let result = jwt.verify(authorization, process.env.JWT_PASS);
     console.log(result.username);

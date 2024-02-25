@@ -29,6 +29,9 @@ function SignUp() {
           setCookie("username", data.username, 365);
           setCookie("auth-token", response.data, 365);
           setLogin(loginCheck());
+          setTimeout(()=>{
+            navigate('/listings')
+          }, 1500)
           return `Account Created!`;
         },
         error: "Error",

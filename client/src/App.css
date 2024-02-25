@@ -291,6 +291,12 @@ nav {
     height: 18vmax;
     border-radius: 12px;
     align-self: center;
+    transition: all 0.5s;
+}
+
+#moment:hover {
+    box-shadow: 0px 0px 10px rgba(11, 21, 45, 1);
+    cursor: pointer;
 }
 
 #user,
