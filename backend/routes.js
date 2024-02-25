@@ -171,6 +171,16 @@ postRouter.delete("/:id", wrapAsync(async (req, res) => {
   res.send("Deleted!")
 }))
 
+postRouter.get("/user/:user", wrapAsync(async (req, res) => {
+    let { user } = req.params
+    let result = await Post.find({ user: user })
+    if (result.length == 0) {
+      throw new ExpressError(404, "No posts associated with this user found")
+    }
+    res.send(result)
+  })
+)
+
 postRouter.use((err, req, res, next) => {
   let { status = 500, message = "Some error occured..!" } = err;
   // console.log(err);
