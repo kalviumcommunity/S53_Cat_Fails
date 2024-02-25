@@ -8,6 +8,8 @@ import NewPost from './components/NewPost'
 import PrivateAuthRoute from './components/PrivateAuthRoute'
 import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
+import UserPosts from './components/UserPosts'
+import Users from './components/Users'
 import Faq from './components/faq'
 import { Route, Routes } from 'react-router-dom'
 
@@ -25,6 +27,8 @@ function App() {
           <Route path="/listings/edit/:id" element={<Edit/>} />
           <Route path='/signup' element={<SignUp/>}/>
           <Route path='/signin' element={<SignIn/>}/>
+          <Route path='/users' element={<Users/>}/>
+          <Route path='/posts/:user' element={<UserPosts/>}/>
         </Routes>
       <div className='bg-img'></div>
       <div className='bg-color'></div>
