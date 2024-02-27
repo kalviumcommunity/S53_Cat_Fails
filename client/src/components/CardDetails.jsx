@@ -14,7 +14,7 @@ function CardDetails() {
 
   useEffect(() => {
     axios
-      .get(`https://cat-cluster.onrender.com/listings/${id}`)
+      .get(`https://backend-cat-fails.vercel.app/listings/${id}`)
       .then((res) => {
         setData(res.data);
       })
@@ -28,7 +28,7 @@ function CardDetails() {
     if (result) {
       try {
         toast.promise(
-          axios.delete(`https://cat-cluster.onrender.com/listings/${data._id}`),
+          axios.delete(`https://backend-cat-fails.vercel.app/listings/${data._id}`),
           {
             loading: "Loading...",
             success: () => {

@@ -22,7 +22,7 @@ function SignUp() {
     const FormSubmitHandler = (data) => {
   try{
     toast.promise(
-      axios.post("https://cat-cluster.onrender.com/users", data),
+      axios.post("https://backend-cat-fails.vercel.app/users", data),
       {
         loading: "Loading...",
         success: (response) => {

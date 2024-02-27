@@ -14,7 +14,7 @@ function Listings() {
   useEffect(() => {
     setTimeout(() => {
       axios
-        .get("https://cat-cluster.onrender.com/listings")
+        .get("https://backend-cat-fails.vercel.app/listings")
         .then((data) => {
           setData(data.data);
         })

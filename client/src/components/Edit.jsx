@@ -28,7 +28,7 @@ function Edit() {
   const FormSubmitHandler = (formData) => {
     try {
       toast.promise(
-        axios.put(`https://cat-cluster.onrender.com/listings/${id}`, formData),
+        axios.put(`https://backend-cat-fails.vercel.app/listings/${id}`, formData),
         {
           loading: "Editing your data...",
           success: () => {
@@ -49,7 +49,7 @@ function Edit() {
   useEffect(() => {
     toast.promise(
       axios
-        .get(`https://cat-cluster.onrender.com/listings/${id}`)
+        .get(`https://backend-cat-fails.vercel.app/listings/${id}`)
         .then((res) => {
           setData(res.data);
           setValue("user", res.data.user);

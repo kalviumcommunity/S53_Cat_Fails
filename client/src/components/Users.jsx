@@ -9,7 +9,7 @@ function Users() {
   useEffect(() => {
     setTimeout(() => {
       axios
-        .get("https://cat-cluster.onrender.com/users")
+        .get("https://backend-cat-fails.vercel.app/users")
         .then((res) => {
           setData(res.data);
         })
