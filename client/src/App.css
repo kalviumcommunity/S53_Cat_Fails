@@ -260,8 +260,15 @@ nav {
     padding: 5vh
 }
 
-#user-post {
+#user-post-info {
     color: white;
+    font-size: 1.5vmax;
+    font-weight: 600;
+    user-select: none;
+}
+
+#user-post {
+    color: black;
     font-size: 1.5vmax;
     font-weight: 600;
     user-select: none;
@@ -276,6 +283,7 @@ nav {
 .listings-grandParent {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex: 1;
 }
 
@@ -480,6 +488,8 @@ nav {
     flex: 1;
 }
 
+
+
 .cardDetails-main {
     background-color: aliceblue;
     padding: 1vw;
@@ -492,6 +502,8 @@ nav {
     width: 35vw;
     height: 50vh;
     border-radius: 14px;
+    box-shadow: 0px 0px 10px rgba(11, 21, 45, 1);
+
 }
 
 .cardDetails-text {

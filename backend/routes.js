@@ -41,7 +41,7 @@ const jwtVerify = (req, res, next) => {
   } catch (err) {
     throw new ExpressError(
       403,
-      "Not authorised to access this route without correct auth token"
+      "Not authorised to access this route without correct auth token."
     );
   }
 };
@@ -88,7 +88,7 @@ router.post(
 postRouter.post("/", jwtVerify, validatePost, wrapAsync(async (req, res) => {
   let insertData = new Post(req.body);
   await insertData.save()
-  res.send("Added")
+  res.send("Added");
 }));
 
 router.put("/:username", async (req, res) => {
@@ -183,7 +183,6 @@ postRouter.get("/user/:user", wrapAsync(async (req, res) => {
 
 postRouter.use((err, req, res, next) => {
   let { status = 500, message = "Some error occured..!" } = err;
-  // console.log(err);
   res.status(status).send(err.message);
 });
 

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BarLoader } from "react-spinners";
+import { FaUser } from "react-icons/fa";
 
 function Users() {
     const [data, setData] = useState([]);
@@ -25,8 +26,10 @@ function Users() {
 
   return (
     <>
-      <div className="flex">
-        <span id="heading-2" style={{ color: "white" }}>
+      <div className="flex" style={{flexDirection:"column"}}>
+        <span id="heading-2" className="flex" style={{ color: "white" }}>
+        <FaUser />
+        &nbsp;
           Users
         </span>
       </div>
@@ -38,13 +41,17 @@ function Users() {
           <BarLoader color="white" />
           ) : (
             <>
+            <span id="user-post-info">Click on any of the following users to view their posts!</span>
+            <br /><br /><br />
+            <div style={{backgroundColor:"white", borderRadius:"20px", padding:"20px"}}>
         {data.map((e, i) => {
             return (
-                <li key={i}>
-            <span id="user-post" onClick={()=>{userClick(e.username)}}>{e.username}</span>
+                <li key={i} style={{listStyleType:"none"}}>
+            <span id="user-post" onClick={()=>{userClick(e.username)}}>@{e.username}</span>
           </li>
           );
         })}
+        </div>
         </>
     )}
         </ul>

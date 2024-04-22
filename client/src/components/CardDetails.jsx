@@ -71,7 +71,7 @@ function CardDetails() {
       <div className="cardDetails-parent flex">
         <Toaster richColors position="top-right" />
         {data.link == undefined ? (
-          <BarLoader color="white" />
+            <BarLoader color="white" />
         ) : (
           <div className="cardDetails-main flex">
             <div className="cardDetails-img">
@@ -79,6 +79,7 @@ function CardDetails() {
             </div>
             <div className="cardDetails-text flex">
               <div className="details-user">@{data.user}</div>
+              <br />
               <div className="details-title">{data.title}</div>
               <div className="cardDetails-btns flex">
                 <Link
